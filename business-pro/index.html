@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BrightPath Academy – Coaching Centre | Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f8fafc;--dark:#0f1c3f;--blue:#1e6fdc;--teal:#00bcd4;--text:#1e293b;--muted:#64748b;--light:#e2f0ff}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
+
+/* DEMO BANNER */
+.demo-banner{background:linear-gradient(90deg,#1e6fdc,#00bcd4);padding:.55rem 1rem;text-align:center;font-size:.82rem;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
+.demo-banner a{color:#fff;text-decoration:underline}
+
+/* NAV */
+nav{background:#fff;padding:.85rem 2rem;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 3px rgba(0,0,0,.08);position:sticky;top:0;z-index:200}
+.logo{font-size:1.2rem;font-weight:800;color:var(--dark)}
+.logo span{color:var(--blue)}
+.nav-links a{color:var(--muted);text-decoration:none;margin-left:1.5rem;font-size:.88rem;font-weight:500;transition:color .2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--blue)}
+.nav-cta{background:var(--blue)!important;color:#fff!important;padding:.4rem .9rem;border-radius:6px}
+.nav-cta:hover{opacity:.88}
+
+/* PAGE SYSTEM */
+.page{display:none}
+.page.active{display:block}
+
+/* HERO HOME */
+.hero{background:linear-gradient(135deg,var(--dark) 0%,#162d6b 100%);padding:6rem 2rem;color:#fff;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e6fdc' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-badge{display:inline-block;background:rgba(0,188,212,.2);border:1px solid rgba(0,188,212,.4);color:#00e5ff;padding:.3rem 1rem;border-radius:20px;font-size:.78rem;font-weight:600;letter-spacing:.06em;margin-bottom:1rem}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+.hero h1 span{color:var(--teal)}
+.hero p{color:#94a3b8;font-size:1.05rem;max-width:540px;margin:0 auto 2rem}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-blue{background:var(--blue);color:#fff;padding:.8rem 1.8rem;border-radius:8px;font-weight:700;font-size:.92rem;text-decoration:none;cursor:pointer;border:none;transition:opacity .2s}
+.btn-blue:hover{opacity:.88}
+.btn-ghost{background:transparent;border:2px solid rgba(255,255,255,.3);color:#fff;padding:.8rem 1.8rem;border-radius:8px;font-weight:600;font-size:.92rem;text-decoration:none;cursor:pointer;transition:background .2s}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.hero-stats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;margin-top:4rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,.1)}
+.stat-num{font-size:2rem;font-weight:800;color:var(--teal)}
+.stat-label{font-size:.8rem;color:#94a3b8;margin-top:.2rem}
+
+/* SECTION */
+section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.sec-label{font-size:.75rem;font-weight:700;letter-spacing:.12em;color:var(--blue);text-transform:uppercase;margin-bottom:.4rem}
+.sec-title{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:800;margin-bottom:.75rem;color:var(--dark)}
+.sec-title span{color:var(--blue)}
+.sec-sub{color:var(--muted);margin-bottom:3rem}
+
+/* COURSES */
+.courses-section{background:#fff}
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.course-card{border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s}
+.course-card:hover{box-shadow:0 8px 24px rgba(30,111,220,.12);transform:translateY(-4px)}
+.course-img{height:160px;overflow:hidden}
+.course-img img{width:100%;height:100%;object-fit:cover}
+.course-body{padding:1.4rem}
+.course-tag{background:var(--light);color:var(--blue);font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:4px;margin-bottom:.8rem;display:inline-block}
+.course-body h3{font-size:1rem;font-weight:700;margin-bottom:.4rem;color:var(--dark)}
+.course-body p{font-size:.85rem;color:var(--muted);margin-bottom:.8rem}
+.course-meta{display:flex;justify-content:space-between;align-items:center}
+.course-duration{font-size:.8rem;color:var(--muted)}
+.course-fee{font-size:1rem;font-weight:800;color:var(--blue)}
+.course-btn{margin-top:1rem;width:100%;background:var(--blue);color:#fff;border:none;padding:.6rem;border-radius:6px;font-weight:600;font-size:.85rem;cursor:pointer;transition:opacity .2s}
+.course-btn:hover{opacity:.85}
+
+/* ABOUT */
+.about-section{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-img{border-radius:16px;overflow:hidden}
+.about-img img{width:100%;height:380px;object-fit:cover}
+.about-points{margin-top:1.5rem}
+.point{display:flex;gap:.75rem;align-items:flex-start;margin-bottom:1rem}
+.point-icon{width:32px;height:32px;background:var(--light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.point h4{font-size:.9rem;font-weight:700;margin-bottom:.2rem;color:var(--dark)}
+.point p{font-size:.83rem;color:var(--muted)}
+
+/* TESTIMONIALS */
+.testi-section{background:#fff}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.testi-card{background:var(--bg);border:1px solid #e2e8f0;border-radius:12px;padding:1.8rem;transition:border-color .2s}
+.testi-card:hover{border-color:var(--blue)}
+.stars{color:#f59e0b;font-size:1rem;margin-bottom:.8rem}
+.testi-text{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:.75rem}
+.testi-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.testi-author h4{font-size:.88rem;font-weight:700;color:var(--dark)}
+.testi-author p{font-size:.78rem;color:var(--muted)}
+
+/* BLOG */
+.blog-section{background:var(--bg)}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.blog-card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;transition:box-shadow .2s}
+.blog-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.blog-img img{width:100%;height:180px;object-fit:cover}
+.blog-body{padding:1.4rem}
+.blog-category{font-size:.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+.blog-body h3{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;line-height:1.4}
+.blog-body p{font-size:.85rem;color:var(--muted);margin-bottom:.8rem}
+.blog-meta{font-size:.78rem;color:var(--muted);display:flex;gap:1rem}
+.read-more{color:var(--blue);font-weight:600;font-size:.85rem;text-decoration:none;cursor:pointer}
+
+/* CONTACT */
+.contact-section{background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-card{background:var(--dark);color:#fff;border-radius:16px;padding:2.5rem}
+.contact-card h3{font-size:1.4rem;font-weight:800;margin-bottom:.5rem}
+.contact-card p{color:#94a3b8;font-size:.9rem;margin-bottom:2rem}
+.cinfo{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem}
+.cinfo-icon{width:40px;height:40px;background:rgba(30,111,220,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.cinfo h4{font-size:.8rem;color:#94a3b8;margin-bottom:.2rem}
+.cinfo p{font-size:.9rem;color:#fff;margin:0}
+.email-badges{display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem}
+.email-badge{background:rgba(0,188,212,.15);border:1px solid rgba(0,188,212,.3);color:#00e5ff;padding:.3rem .8rem;border-radius:6px;font-size:.82rem;font-family:monospace}
+form input,form textarea,form select{width:100%;background:var(--bg);border:1px solid #e2e8f0;border-radius:8px;padding:.8rem 1rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.88rem;margin-bottom:.9rem;outline:none;transition:border-color .2s}
+form input:focus,form textarea:focus{border-color:var(--blue)}
+form textarea{height:110px;resize:none}
+form .submit-btn{background:var(--blue);color:#fff;border:none;padding:.85rem;width:100%;border-radius:8px;font-weight:700;font-size:.92rem;cursor:pointer}
+
+/* FOOTER */
+footer{background:var(--dark);color:#fff;padding:3rem 2rem 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2rem;max-width:1100px;margin-left:auto;margin-right:auto}
+.footer-brand h3{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:.5rem}
+.footer-brand p{color:#64748b;font-size:.85rem;line-height:1.7}
+.footer-col h4{font-size:.85rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem}
+.footer-col a{display:block;color:#64748b;text-decoration:none;font-size:.85rem;margin-bottom:.5rem;transition:color .2s}
+.footer-col a:hover{color:#00bcd4}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.07);color:#475569;font-size:.82rem;max-width:1100px;margin:0 auto}
+.footer-bottom a{color:#00bcd4;text-decoration:none}
+
+/* FLOAT WA */
+.float-wa{position:fixed;bottom:2rem;right:2rem;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 16px rgba(37,211,102,.5);text-decoration:none;z-index:999}
+
+@media(max-width:768px){
+  .about-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  ⭐ DEMO — Business Pro Package (₹9,999) | Multi-Page Website | <a href="../index.html">← Back to All Packages</a>
+</div>
+
+<nav>
+  <div class="logo">Bright<span>Path</span> Academy</div>
+  <div class="nav-links">
+    <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+    <a onclick="showPage('about')" id="nav-about">About</a>
+    <a onclick="showPage('courses')" id="nav-courses">Courses</a>
+    <a onclick="showPage('blog')" id="nav-blog">Blog</a>
+    <a onclick="showPage('testimonials')" id="nav-testimonials">Reviews</a>
+    <a onclick="showPage('contact')" class="nav-cta" id="nav-contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div>
+      <div class="hero-badge">🎓 #1 Coaching Centre in Chennai</div>
+      <h1>Launch Your Career with<br><span>Expert Coaching</span></h1>
+      <p>Comprehensive coaching for JEE, NEET, CAT, UPSC & professional certifications. Join 10,000+ successful students.</p>
+      <div class="hero-btns">
+        <button class="btn-blue" onclick="showPage('courses')">Explore Courses</button>
+        <button class="btn-ghost" onclick="showPage('contact')">Free Demo Class</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">10K+</div><div class="stat-label">Students Enrolled</div></div>
+        <div class="stat"><div class="stat-num">95%</div><div class="stat-label">Success Rate</div></div>
+        <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Expert Faculties</div></div>
+        <div class="stat"><div class="stat-num">8 Yrs</div><div class="stat-label">Excellence</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section style="background:#fff;padding:4rem 2rem">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <div class="sec-label">Popular Courses</div>
+        <h2 class="sec-title">Start Learning <span>Today</span></h2>
+      </div>
+      <div class="courses-grid">
+        <div class="course-card">
+          <div class="course-img"><img src="https://picsum.photos/seed/jee1/400/200" alt="JEE"/></div>
+          <div class="course-body">
+            <span class="course-tag">Engineering</span>
+            <h3>JEE Main & Advanced</h3>
+            <p>Complete preparation with mock tests, doubt sessions and study material.</p>
+            <div class="course-meta"><span class="course-duration">⏱ 12 Months</span><span class="course-fee">₹ 45,000/yr</span></div>
+            <button class="course-btn" onclick="showPage('contact')">Enroll Now</button>
+          </div>
+        </div>
+        <div class="course-card">
+          <div class="course-img"><img src="https://picsum.photos/seed/neet2/400/200" alt="NEET"/></div>
+          <div class="course-body">
+            <span class="course-tag">Medical</span>
+            <h3>NEET UG Coaching</h3>
+            <p>Expert biology, physics & chemistry coaching with 3000+ practice questions.</p>
+            <div class="course-meta"><span class="course-duration">⏱ 12 Months</span><span class="course-fee">₹ 42,000/yr</span></div>
+            <button class="course-btn" onclick="showPage('contact')">Enroll Now</button>
+          </div>
+        </div>
+        <div class="course-card">
+          <div class="course-img"><img src="https://picsum.photos/seed/cat3/400/200" alt="CAT"/></div>
+          <div class="course-body">
+            <span class="course-tag">MBA</span>
+            <h3>CAT & MBA Entrance</h3>
+            <p>Verbal, Quantitative & Data Interpretation with IIM alumni mentors.</p>
+            <div class="course-meta"><span class="course-duration">⏱ 6 Months</span><span class="course-fee">₹ 28,000</span></div>
+            <button class="course-btn" onclick="showPage('contact')">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page" id="page-about">
+  <section class="about-section" style="padding-top:5rem">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="about-img"><img src="https://picsum.photos/seed/classroom1/600/400" alt="Classroom"/></div>
+        </div>
+        <div>
+          <div class="sec-label">Who We Are</div>
+          <h2 class="sec-title">Shaping <span>Tomorrow's</span> Leaders Since 2016</h2>
+          <p style="color:var(--muted);font-size:.95rem;line-height:1.8;margin-bottom:1.5rem">BrightPath Academy was founded with a single mission: to make quality education accessible to every student. With a team of IIT/IIM alumni faculty, we provide world-class coaching tailored for each student's needs.</p>
+          <div class="about-points">
+            <div class="point"><div class="point-icon">✅</div><div><h4>Expert Faculty</h4><p>50+ IIT, IIM & AIIMS alumni teachers</p></div></div>
+            <div class="point"><div class="point-icon">📊</div><div><h4>Personalized Learning</h4><p>Individual attention with weekly performance tracking</p></div></div>
+            <div class="point"><div class="point-icon">📱</div><div><h4>Hybrid Classes</h4><p>Attend online or offline, your choice</p></div></div>
+            <div class="point"><div class="point-icon">🏆</div><div><h4>Proven Results</h4><p>95% students achieve their target scores</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- COURSES PAGE -->
+<div class="page" id="page-courses">
+  <section class="courses-section" style="padding-top:5rem">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3rem">
+        <div class="sec-label">All Programs</div>
+        <h2 class="sec-title">Our <span>Courses</span></h2>
+        <p class="sec-sub">Choose from a wide range of programs designed by industry experts</p>
+      </div>
+      <div class="courses-grid">
+        <div class="course-card"><div class="course-img"><img src="https://picsum.photos/seed/jee1/400/200"/></div><div class="course-body"><span class="course-tag">Engineering</span><h3>JEE Main & Advanced</h3><p>Complete 12-month program with live + recorded sessions.</p><div class="course-meta"><span class="course-duration">⏱ 12 Months</span><span class="course-fee">₹45,000</span></div><button class="course-btn" onclick="showPage('contact')">Enroll Now</button></div></div>
+        <div class="course-card"><div class="course-img"><img src="https://picsum.photos/seed/neet2/400/200"/></div><div class="course-body"><span class="course-tag">Medical</span><h3>NEET UG Coaching</h3><p>Intensive 12-month program with 3000+ practice questions.</p><div class="course-meta"><span class="course-duration">⏱ 12 Months</span><span class="course-fee">₹42,000</span></div><button class="course-btn" onclick="showPage('contact')">Enroll Now</button></div></div>
+        <div class="course-card"><div class="course-img"><img src="https://picsum.photos/seed/cat3/400/200"/></div><div class="course-body"><span class="course-tag">MBA</span><h3>CAT & MBA Entrance</h3><p>Quant, VARC and DILR with IIM mentors.</p><div class="course-meta"><span class="course-duration">⏱ 6 Months</span><span class="course-fee">₹28,000</span></div><button class="course-btn" onclick="showPage('contact')">Enroll Now</button></div></div>
+        <div class="course-card"><div class="course-img"><img src="https://picsum.photos/seed/upsc4/400/200"/></div><div class="course-body"><span class="course-tag">Civil Services</span><h3>UPSC IAS Foundation</h3><p>Prelims + Mains comprehensive coverage with essay workshops.</p><div class="course-meta"><span class="course-duration">⏱ 18 Months</span><span class="course-fee">₹65,000</span></div><button class="course-btn" onclick="showPage('contact')">Enroll Now</button></div></div>
+        <div class="course-card"><div class="course-img"><img src="https://picsum.photos/seed/bank5/400/200"/></div><div class="course-body"><span class="course-tag">Banking</span><h3>SBI / IBPS PO Exam</h3><p>Reasoning, Quant & English with 50 full mock tests.</p><div class="course-meta"><span class="course-duration">⏱ 4 Months</span><span class="course-fee">₹12,000</span></div><button class="course-btn" onclick="showPage('contact')">Enroll Now</button></div></div>
+        <div class="course-card"><div class="course-img"><img src="https://picsum.photos/seed/python6/400/200"/></div><div class="course-body"><span class="course-tag">Tech</span><h3>Python & Data Science</h3><p>Beginner to advanced Python, ML and data visualization.</p><div class="course-meta"><span class="course-duration">⏱ 3 Months</span><span class="course-fee">₹18,000</span></div><button class="course-btn" onclick="showPage('contact')">Enroll Now</button></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- BLOG PAGE -->
+<div class="page" id="page-blog">
+  <section class="blog-section" style="padding-top:5rem">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3rem">
+        <div class="sec-label">Knowledge Hub</div>
+        <h2 class="sec-title">Latest from Our <span>Blog</span></h2>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card"><div class="blog-img"><img src="https://picsum.photos/seed/blog1/500/220" alt=""/></div><div class="blog-body"><div class="blog-category">JEE Tips</div><h3>10 Proven Strategies to Crack JEE Advanced in First Attempt</h3><p>Expert faculty reveal the study techniques that work for most successful students...</p><div class="blog-meta"><span>📅 Jan 15, 2025</span><span>⏱ 5 min read</span></div><a class="read-more">Read More →</a></div></div>
+        <div class="blog-card"><div class="blog-img"><img src="https://picsum.photos/seed/blog2/500/220" alt=""/></div><div class="blog-body"><div class="blog-category">NEET</div><h3>Biology Revision Plan: Master NCERT in 30 Days Before NEET</h3><p>A structured 30-day plan designed by our top NEET faculty to maximize your score...</p><div class="blog-meta"><span>📅 Jan 10, 2025</span><span>⏱ 7 min read</span></div><a class="read-more">Read More →</a></div></div>
+        <div class="blog-card"><div class="blog-img"><img src="https://picsum.photos/seed/blog3/500/220" alt=""/></div><div class="blog-body"><div class="blog-category">Career Guide</div><h3>IIT vs NIT: Which Is the Right Choice for Your Engineering Career?</h3><p>A comprehensive comparison to help Class 12 students make an informed decision...</p><div class="blog-meta"><span>📅 Jan 5, 2025</span><span>⏱ 8 min read</span></div><a class="read-more">Read More →</a></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- TESTIMONIALS PAGE -->
+<div class="page" id="page-testimonials">
+  <section class="testi-section" style="padding-top:5rem">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3rem">
+        <div class="sec-label">Student Success</div>
+        <h2 class="sec-title">What Our <span>Students Say</span></h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"BrightPath's faculty is absolutely exceptional. I cracked JEE Advanced with AIR 342 after joining their 2-year program. The mock tests are as good as the actual exam!"</p><div class="testi-author"><img class="testi-avatar" src="https://picsum.photos/seed/student1/80/80" alt=""/><div><h4>Rohan Sharma</h4><p>JEE Advanced AIR 342 | IIT Bombay</p></div></div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"The NEET coaching here is unmatched. The way they break down Biology topics made it so easy to retain. I scored 720/720 and now I'm in AIIMS Delhi!"</p><div class="testi-author"><img class="testi-avatar" src="https://picsum.photos/seed/student2/80/80" alt=""/><div><h4>Priya Menon</h4><p>NEET 720/720 | AIIMS Delhi</p></div></div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"CAT 99.8 percentile! The quant section prep at BrightPath is phenomenal. Weekly tests and personal feedback from IIM alumni mentors made all the difference."</p><div class="testi-author"><img class="testi-avatar" src="https://picsum.photos/seed/student3/80/80" alt=""/><div><h4>Aditya Nair</h4><p>CAT 99.8%ile | IIM Ahmedabad</p></div></div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"I was working full-time and still cracked UPSC Prelims in first attempt. The weekend batch and recorded sessions were a lifesaver. Highly recommended!"</p><div class="testi-author"><img class="testi-avatar" src="https://picsum.photos/seed/student4/80/80" alt=""/><div><h4>Kavitha Reddy</h4><p>UPSC CSE 2024 Cleared</p></div></div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"The doubt-clearing sessions are the best thing about BrightPath. No question is too small. Faculty always available on WhatsApp. Worth every rupee!"</p><div class="testi-author"><img class="testi-avatar" src="https://picsum.photos/seed/student5/80/80" alt=""/><div><h4>Mohammed Faiz</h4><p>SBI PO Selected 2024</p></div></div></div>
+        <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"Joined Python & Data Science course as a complete beginner. Now I'm working at a top MNC as a Data Analyst. The placement support is real and effective."</p><div class="testi-author"><img class="testi-avatar" src="https://picsum.photos/seed/student6/80/80" alt=""/><div><h4>Sneha Patel</h4><p>Data Analyst at TCS</p></div></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <section class="contact-section" style="padding-top:5rem">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3rem">
+        <div class="sec-label">Get In Touch</div>
+        <h2 class="sec-title">Contact <span>BrightPath</span></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>We're Here to Help</h3>
+          <p>Reach out for admissions, course enquiries or any questions.</p>
+          <div class="cinfo"><div class="cinfo-icon">📍</div><div><h4>Address</h4><p>45, Velachery Main Road, Velachery, Chennai – 600 042</p></div></div>
+          <div class="cinfo"><div class="cinfo-icon">📞</div><div><h4>Phone / WhatsApp</h4><p>+91 98765 12345</p></div></div>
+          <div class="cinfo"><div class="cinfo-icon">📧</div><div><h4>Business Emails</h4><div class="email-badges"><span class="email-badge">admissions@brightpath.in</span><span class="email-badge">info@brightpath.in</span></div></div></div>
+          <div class="cinfo"><div class="cinfo-icon">⏰</div><div><h4>Office Hours</h4><p>Mon–Sat: 9 AM – 7 PM</p></div></div>
+        </div>
+        <div>
+          <form onsubmit="return false">
+            <input type="text" placeholder="Full Name"/>
+            <input type="tel" placeholder="Phone Number"/>
+            <input type="email" placeholder="Email Address"/>
+            <select><option value="">Select Course of Interest</option><option>JEE Main & Advanced</option><option>NEET UG</option><option>CAT / MBA</option><option>UPSC IAS</option><option>Banking Exams</option><option>Python & Data Science</option></select>
+            <select><option value="">Preferred Batch Timing</option><option>Morning (7 AM – 10 AM)</option><option>Afternoon (1 PM – 4 PM)</option><option>Evening (5 PM – 8 PM)</option><option>Weekend Batch</option></select>
+            <textarea placeholder="Any specific requirements or questions?"></textarea>
+            <button class="submit-btn">Request Free Demo Class</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>BrightPath Academy</h3>
+      <p>Empowering students to achieve their dreams through expert coaching and personalized learning since 2016.</p>
+      <p style="margin-top:.75rem;color:#475569">admissions@brightpath.in<br>info@brightpath.in</p>
+    </div>
+    <div class="footer-col">
+      <h4>Courses</h4>
+      <a>JEE Main & Advanced</a>
+      <a>NEET UG</a>
+      <a>CAT & MBA</a>
+      <a>UPSC Foundation</a>
+      <a>Banking Exams</a>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a onclick="showPage('about')">About Us</a>
+      <a onclick="showPage('testimonials')">Student Reviews</a>
+      <a onclick="showPage('blog')">Blog</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 BrightPath Academy. Website by <a href="https://www.cherubim.in">Cherubim AI Infosoft Pvt Ltd</a>
+  </div>
+</footer>
+
+<a href="https://wa.me/919876512345" class="float-wa" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

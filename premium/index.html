@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Royal Palms Resort – Luxury Hotel | Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0a;--dark2:#111;--gold:#c9a84c;--gold2:#e8c96d;--cream:#f5efe0;--text:#e8e0d0;--muted:#8a7d6a;--border:rgba(201,168,76,.15)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text)}
+
+/* DEMO BANNER */
+.demo-banner{background:linear-gradient(90deg,#6c3fc5,#1e6fdc);padding:.55rem 1rem;text-align:center;font-size:.82rem;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
+.demo-banner a{color:#fff;text-decoration:underline}
+
+/* LANG TOGGLE */
+.lang-bar{background:#111;padding:.4rem 2rem;display:flex;justify-content:flex-end;align-items:center;gap:.5rem;border-bottom:1px solid var(--border)}
+.lang-btn{background:transparent;border:1px solid var(--border);color:var(--gold);padding:.2rem .6rem;border-radius:4px;font-size:.75rem;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.lang-btn.active{background:var(--gold);color:#000}
+.lang-bar span{font-size:.75rem;color:var(--muted);margin-right:.5rem}
+
+/* NAV */
+nav{background:rgba(10,10,10,.97);backdrop-filter:blur(12px);padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--gold);letter-spacing:.08em}
+.logo small{display:block;font-size:.6rem;color:var(--muted);letter-spacing:.2em;font-family:'Inter',sans-serif;font-weight:400;text-transform:uppercase}
+.nav-links a{color:var(--muted);text-decoration:none;margin-left:1.8rem;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;transition:color .2s;cursor:pointer;font-weight:500}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-book{background:var(--gold);color:#000!important;padding:.45rem 1.1rem;border-radius:4px;font-weight:700!important}
+.admin-link{background:rgba(201,168,76,.1);border:1px solid var(--border);color:var(--gold)!important;padding:.3rem .7rem;border-radius:4px;font-size:.72rem!important}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
+
+/* HERO */
+.hero{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.3) 0%,rgba(0,0,0,.55) 60%,rgba(0,0,0,.85) 100%),url('https://picsum.photos/seed/luxury-hotel/1600/900') center/cover no-repeat;animation:kenburns 20s ease-in-out infinite alternate}
+@keyframes kenburns{0%{transform:scale(1)}100%{transform:scale(1.06)}}
+.hero-content{position:relative;z-index:2}
+.hero-label{font-size:.72rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,6rem);font-weight:700;line-height:1;margin-bottom:.8rem;color:#fff}
+.hero h1 span{color:var(--gold)}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.7);letter-spacing:.06em;text-transform:uppercase;margin-bottom:2.5rem}
+.hero-divider{width:60px;height:1px;background:var(--gold);margin:1.2rem auto}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:#000;padding:.85rem 2.2rem;border-radius:2px;font-weight:700;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
+.btn-gold:hover{background:var(--gold2)}
+.btn-ghost-gold{border:1px solid var(--gold);color:var(--gold);background:transparent;padding:.85rem 2.2rem;border-radius:2px;font-weight:600;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.btn-ghost-gold:hover{background:rgba(201,168,76,.1)}
+.scroll-indicator{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;text-align:center;color:rgba(255,255,255,.5);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;animation:fadeUpDown 2s infinite}
+@keyframes fadeUpDown{0%,100%{opacity:.5;transform:translateX(-50%) translateY(0)}50%{opacity:1;transform:translateX(-50%) translateY(8px)}}
+
+/* BOOKING BAR */
+.booking-bar{background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem 2rem}
+.booking-bar .container{display:flex;gap:1rem;align-items:flex-end;flex-wrap:wrap}
+.book-field{flex:1;min-width:160px}
+.book-field label{display:block;font-size:.7rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;font-weight:600}
+.book-field input,.book-field select{width:100%;background:#1a1a1a;border:1px solid var(--border);color:var(--text);padding:.7rem 1rem;border-radius:2px;font-size:.88rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+.book-field input:focus,.book-field select:focus{border-color:var(--gold)}
+.book-field select option{background:#1a1a1a;color:var(--text)}
+.book-submit{background:var(--gold);color:#000;border:none;padding:.78rem 2rem;font-weight:700;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border-radius:2px;white-space:nowrap;flex-shrink:0;transition:background .2s}
+.book-submit:hover{background:var(--gold2)}
+
+/* CONTAINERS */
+section{padding:5rem 2rem}
+.container{max-width:1200px;margin:0 auto}
+.sec-label{font-size:.7rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:.6rem;font-weight:600}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:.8rem;line-height:1.1}
+.sec-title span{color:var(--gold)}
+.sec-divider{width:40px;height:1px;background:var(--gold);margin:.8rem 0 1.5rem}
+.sec-sub{color:var(--muted);font-size:.92rem;line-height:1.8;max-width:580px}
+
+/* ROOMS */
+.rooms-section{background:#0d0d0d}
+.rooms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
+.room-card{border:1px solid var(--border);border-radius:2px;overflow:hidden;transition:border-color .2s}
+.room-card:hover{border-color:var(--gold)}
+.room-img{height:220px;overflow:hidden;position:relative}
+.room-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.room-card:hover .room-img img{transform:scale(1.05)}
+.room-tag{position:absolute;top:.8rem;left:.8rem;background:var(--gold);color:#000;font-size:.68rem;font-weight:700;padding:.2rem .6rem;letter-spacing:.06em;text-transform:uppercase}
+.room-body{padding:1.5rem;background:#111}
+.room-body h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;margin-bottom:.4rem}
+.room-body p{font-size:.83rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.room-amenities{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.room-amenity{font-size:.72rem;color:var(--muted);background:#1a1a1a;padding:.2rem .5rem;border-radius:2px}
+.room-footer{display:flex;justify-content:space-between;align-items:center}
+.room-price{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--gold)}
+.room-price small{font-size:.7rem;color:var(--muted);font-family:'Inter',sans-serif;font-weight:400}
+.room-btn{border:1px solid var(--gold);color:var(--gold);background:transparent;padding:.45rem 1rem;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.room-btn:hover{background:var(--gold);color:#000}
+
+/* AMENITIES */
+.amenities-section{background:var(--bg);text-align:center}
+.amenities-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.5rem;margin-top:3rem}
+.amenity-card{padding:2rem 1rem;border:1px solid var(--border);border-radius:2px;transition:border-color .2s}
+.amenity-card:hover{border-color:var(--gold)}
+.amenity-icon{font-size:2rem;margin-bottom:.8rem;display:block}
+.amenity-card h4{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
+.amenity-card p{font-size:.78rem;color:var(--muted)}
+
+/* DINING */
+.dining-section{background:#0d0d0d}
+.dining-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border)}
+.dining-img{overflow:hidden}
+.dining-img img{width:100%;height:100%;min-height:400px;object-fit:cover;transition:transform .4s}
+.dining-img:hover img{transform:scale(1.04)}
+.dining-content{padding:4rem;display:flex;flex-direction:column;justify-content:center;background:#111}
+.dining-menu-items{margin-top:1.5rem}
+.dining-item{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.dining-item:last-child{border-bottom:none}
+.dining-item h4{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600}
+.dining-item p{font-size:.75rem;color:var(--muted)}
+.dining-item span{font-size:.88rem;font-weight:700;color:var(--gold);flex-shrink:0;margin-left:1rem}
+
+/* GALLERY */
+.gallery-section{background:var(--bg)}
+.gallery-masonry{columns:3;gap:1rem;margin-top:2.5rem}
+.gallery-masonry .gimg{break-inside:avoid;margin-bottom:1rem;overflow:hidden;border:1px solid var(--border)}
+.gallery-masonry .gimg img{width:100%;display:block;transition:transform .3s}
+.gallery-masonry .gimg:hover img{transform:scale(1.04)}
+
+/* ANALYTICS PREVIEW */
+.analytics-section{background:#0d0d0d}
+.analytics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2.5rem}
+.analytics-card{background:#111;border:1px solid var(--border);border-radius:2px;padding:1.5rem}
+.analytics-card .a-label{font-size:.72rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.analytics-card .a-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:.2rem}
+.analytics-card .a-change{font-size:.78rem;color:#28c76f;font-weight:600}
+.analytics-card .a-bar{height:4px;background:rgba(201,168,76,.15);border-radius:2px;margin-top:.8rem;overflow:hidden}
+.analytics-card .a-fill{height:100%;background:var(--gold);border-radius:2px}
+
+/* BOOKING PAGE */
+.booking-page{padding:4rem 2rem;background:var(--bg)}
+.booking-form-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;align-items:start;max-width:1000px;margin:2rem auto 0}
+.booking-card{background:#111;border:1px solid var(--border);border-radius:2px;padding:2.5rem}
+.booking-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:1.5rem;color:var(--gold)}
+.b-group{margin-bottom:1.2rem}
+.b-group label{display:block;font-size:.72rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;font-weight:600}
+.b-group input,.b-group select,.b-group textarea{width:100%;background:#1a1a1a;border:1px solid var(--border);color:var(--text);padding:.75rem 1rem;font-family:'Inter',sans-serif;font-size:.88rem;outline:none;border-radius:2px;transition:border-color .2s}
+.b-group input:focus,.b-group select:focus,.b-group textarea:focus{border-color:var(--gold)}
+.b-group select option{background:#1a1a1a}
+.b-group textarea{height:100px;resize:none}
+.b-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.b-submit{width:100%;background:var(--gold);color:#000;border:none;padding:.9rem;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;margin-top:.5rem;transition:background .2s}
+.b-submit:hover{background:var(--gold2)}
+.room-summary{background:#111;border:1px solid var(--border);border-radius:2px;padding:2rem;position:sticky;top:80px}
+.room-summary h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)}
+.summary-row{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.6rem}
+.summary-row .label{color:var(--muted)}
+.summary-total{display:flex;justify-content:space-between;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--gold);padding-top:.8rem;border-top:1px solid var(--border);margin-top:.8rem}
+.payment-note{font-size:.75rem;color:var(--muted);margin-top:1rem;line-height:1.6;text-align:center}
+
+/* CONTACT */
+.contact-section{background:#0d0d0d}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.cinfo-block{margin-bottom:2rem}
+.cinfo-block h4{font-size:.72rem;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem}
+.cinfo-block p{font-size:.9rem;color:var(--muted);line-height:1.7}
+.cinfo-block a{color:var(--gold);text-decoration:none}
+.map-box{height:200px;background:#1a1a1a;border:1px solid var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.88rem;margin-top:1.5rem}
+
+/* FOOTER */
+footer{background:#050505;padding:4rem 2rem 2rem;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto 3rem}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);letter-spacing:.08em;margin-bottom:.5rem}
+.footer-brand p{color:#4a4030;font-size:.85rem;line-height:1.7;margin-bottom:1rem}
+.footer-col h4{font-size:.7rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:1rem;font-weight:600}
+.footer-col a{display:block;color:#4a4030;text-decoration:none;font-size:.85rem;margin-bottom:.4rem;transition:color .2s;cursor:pointer}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid var(--border);color:#3a3028;font-size:.8rem;max-width:1200px;margin:0 auto}
+.footer-bottom a{color:var(--gold);text-decoration:none}
+
+/* FLOAT WA */
+.float-wa{position:fixed;bottom:2rem;right:2rem;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.5);text-decoration:none;z-index:300}
+
+@media(max-width:768px){
+  .dining-grid,.contact-grid,.booking-form-grid,.footer-grid{grid-template-columns:1fr}
+  .gallery-masonry{columns:2}
+  .nav-links{display:none}
+  .b-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  ⭐ DEMO — Premium Custom Package (₹34,999) | Enterprise Website | <a href="../index.html">← Back to All Packages</a>
+</div>
+
+<div class="lang-bar">
+  <span>Language:</span>
+  <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+  <button class="lang-btn" onclick="setLang('hi',this)">हिंदी</button>
+  <button class="lang-btn" onclick="setLang('ta',this)">தமிழ்</button>
+  <a href="#" style="margin-left:1rem;font-size:.72rem;color:var(--muted);text-decoration:none" onclick="showHotelPage('admin');return false">🔐 Admin Panel</a>
+</div>
+
+<nav>
+  <div class="logo">Royal Palms <small>Resort & Spa</small></div>
+  <div class="nav-links">
+    <a onclick="showHotelPage('home')" class="active" id="hnav-home" data-en="Home" data-hi="होम" data-ta="முகப்பு">Home</a>
+    <a onclick="showHotelPage('rooms')" id="hnav-rooms" data-en="Rooms" data-hi="कमरे" data-ta="அறைகள்">Rooms</a>
+    <a onclick="showHotelPage('dining')" id="hnav-dining" data-en="Dining" data-hi="भोजन" data-ta="உணவு">Dining</a>
+    <a onclick="showHotelPage('gallery')" id="hnav-gallery" data-en="Gallery" data-hi="गैलरी" data-ta="படத்தொகுப்பு">Gallery</a>
+    <a onclick="showHotelPage('contact')" id="hnav-contact" data-en="Contact" data-hi="संपर्क" data-ta="தொடர்பு">Contact</a>
+    <a onclick="showHotelPage('booking')" class="nav-book" id="hnav-booking" data-en="Book Now" data-hi="बुक करें" data-ta="பதிவு">Book Now</a>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="hpage-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-label">★ 5-Star Luxury Resort & Spa</div>
+      <h1>Royal <span>Palms</span><br>Resort</h1>
+      <div class="hero-divider"></div>
+      <div class="hero-sub">Chennai · Mahabalipuram · Since 1995</div>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="showHotelPage('booking')">Reserve Your Stay</button>
+        <button class="btn-ghost-gold" onclick="showHotelPage('rooms')">Explore Rooms</button>
+      </div>
+    </div>
+    <div class="scroll-indicator">↓ Scroll to explore</div>
+  </div>
+
+  <div class="booking-bar">
+    <div class="container">
+      <div class="book-field"><label>Check-In</label><input type="date"/></div>
+      <div class="book-field"><label>Check-Out</label><input type="date"/></div>
+      <div class="book-field"><label>Guests</label><select><option>1 Adult</option><option>2 Adults</option><option>2 Adults + 1 Child</option><option>2 Adults + 2 Children</option></select></div>
+      <div class="book-field"><label>Room Type</label><select><option>Any Room</option><option>Deluxe Room</option><option>Suite</option><option>Royal Suite</option><option>Villa</option></select></div>
+      <button class="book-submit" onclick="showHotelPage('booking')">Check Availability</button>
+    </div>
+  </div>
+
+  <section style="background:var(--dark2);padding:5rem 2rem;text-align:center">
+    <div class="container">
+      <div class="sec-label">Welcome to Luxury</div>
+      <h2 class="sec-title">An Unforgettable <span>Experience</span></h2>
+      <div class="sec-divider" style="margin:.8rem auto 1.5rem"></div>
+      <p style="color:var(--muted);font-size:.95rem;max-width:600px;margin:0 auto 3rem;line-height:1.8">Nestled along the Coromandel Coast, Royal Palms Resort offers an unmatched blend of traditional Indian luxury and modern elegance. Your perfect escape awaits.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:2rem">
+        <div style="border:1px solid var(--border);padding:2rem;text-align:center">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);font-weight:700">120+</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:.3rem;letter-spacing:.06em;text-transform:uppercase">Luxury Rooms</div>
+        </div>
+        <div style="border:1px solid var(--border);padding:2rem;text-align:center">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);font-weight:700">5★</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:.3rem;letter-spacing:.06em;text-transform:uppercase">Rating</div>
+        </div>
+        <div style="border:1px solid var(--border);padding:2rem;text-align:center">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);font-weight:700">3</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:.3rem;letter-spacing:.06em;text-transform:uppercase">Restaurants</div>
+        </div>
+        <div style="border:1px solid var(--border);padding:2rem;text-align:center">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);font-weight:700">28yr</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-top:.3rem;letter-spacing:.06em;text-transform:uppercase">Legacy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ROOMS -->
+<div class="page" id="hpage-rooms">
+  <section class="rooms-section" style="padding-top:5rem">
+    <div class="container">
+      <div class="sec-label">Accommodations</div>
+      <h2 class="sec-title">Our <span>Rooms & Suites</span></h2>
+      <div class="sec-divider"></div>
+      <p class="sec-sub">Each room is a sanctuary of comfort, designed with meticulous attention to detail and adorned with curated art and luxurious furnishings.</p>
+      <div class="rooms-grid">
+        <div class="room-card">
+          <div class="room-img"><img src="https://picsum.photos/seed/hotelroom1/500/300" alt="Deluxe Room"/><span class="room-tag">Deluxe</span></div>
+          <div class="room-body">
+            <h3>Deluxe Garden View</h3>
+            <p>Spacious 32 sqm room with private balcony overlooking lush tropical gardens. King or twin beds available.</p>
+            <div class="room-amenities"><span class="room-amenity">🛁 Bathtub</span><span class="room-amenity">📶 WiFi</span><span class="room-amenity">❄️ AC</span><span class="room-amenity">🍳 Minibar</span></div>
+            <div class="room-footer"><div class="room-price">₹8,500<small>/night</small></div><button class="room-btn" onclick="showHotelPage('booking')">Reserve</button></div>
+          </div>
+        </div>
+        <div class="room-card">
+          <div class="room-img"><img src="https://picsum.photos/seed/hotelsuite1/500/300" alt="Suite"/><span class="room-tag">Suite</span></div>
+          <div class="room-body">
+            <h3>Ocean View Suite</h3>
+            <p>Elegant 55 sqm suite with floor-to-ceiling windows offering panoramic ocean views and a separate living area.</p>
+            <div class="room-amenities"><span class="room-amenity">🌊 Sea View</span><span class="room-amenity">🛁 Jacuzzi</span><span class="room-amenity">🍾 Butler</span><span class="room-amenity">📺 Smart TV</span></div>
+            <div class="room-footer"><div class="room-price">₹18,000<small>/night</small></div><button class="room-btn" onclick="showHotelPage('booking')">Reserve</button></div>
+          </div>
+        </div>
+        <div class="room-card">
+          <div class="room-img"><img src="https://picsum.photos/seed/royalsuite1/500/300" alt="Royal Suite"/><span class="room-tag" style="background:#1e6fdc">Royal Suite</span></div>
+          <div class="room-body">
+            <h3>Royal Presidential Suite</h3>
+            <p>Our flagship 120 sqm suite with private pool, dining room, two bedrooms and dedicated butler service 24/7.</p>
+            <div class="room-amenities"><span class="room-amenity">🏊 Pool</span><span class="room-amenity">👑 Butler</span><span class="room-amenity">🍽️ Dining</span><span class="room-amenity">🌅 Panorama</span></div>
+            <div class="room-footer"><div class="room-price">₹45,000<small>/night</small></div><button class="room-btn" onclick="showHotelPage('booking')">Reserve</button></div>
+          </div>
+        </div>
+      </div>
+      <section class="amenities-section" style="padding:4rem 0 0;background:transparent">
+        <div class="sec-label" style="text-align:center">Hotel Amenities</div>
+        <h2 class="sec-title" style="text-align:center">World-Class <span>Facilities</span></h2>
+        <div class="amenities-grid">
+          <div class="amenity-card"><span class="amenity-icon">🏊</span><h4>Infinity Pool</h4><p>Ocean-facing infinity pool open 6am–10pm</p></div>
+          <div class="amenity-card"><span class="amenity-icon">💆</span><h4>Luxury Spa</h4><p>Ayurvedic & international treatments</p></div>
+          <div class="amenity-card"><span class="amenity-icon">🏋️</span><h4>Fitness Center</h4><p>24/7 state-of-the-art gym</p></div>
+          <div class="amenity-card"><span class="amenity-icon">🎾</span><h4>Tennis Court</h4><p>2 lit courts with coaching</p></div>
+          <div class="amenity-card"><span class="amenity-icon">🏖️</span><h4>Private Beach</h4><p>Exclusive 500m beachfront</p></div>
+          <div class="amenity-card"><span class="amenity-icon">🎪</span><h4>Event Hall</h4><p>Banquet for 800 guests</p></div>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>
+
+<!-- DINING -->
+<div class="page" id="hpage-dining">
+  <section class="dining-section" style="padding-top:5rem">
+    <div class="container">
+      <div class="sec-label">Culinary Experience</div>
+      <h2 class="sec-title">Our <span>Restaurants</span></h2>
+      <div class="sec-divider"></div>
+      <br/>
+      <div class="dining-grid">
+        <div class="dining-img"><img src="https://picsum.photos/seed/restaurant-luxury/700/500" alt="The Spice Route"/></div>
+        <div class="dining-content">
+          <div class="sec-label">Signature Restaurant</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;margin-bottom:.5rem">The Spice Route</h3>
+          <div class="sec-divider"></div>
+          <p style="color:var(--muted);font-size:.88rem;line-height:1.8;margin-bottom:1.5rem">Award-winning fine dining celebrating the spice trade heritage of India. Chef Arjun Menon presents a contemporary interpretation of regional cuisines.</p>
+          <div class="dining-menu-items">
+            <div class="dining-item"><div><h4>Lamb Rogan Josh</h4><p>Slow-cooked Kashmiri lamb, saffron rice</p></div><span>₹ 850</span></div>
+            <div class="dining-item"><div><h4>Coastal Prawn Masala</h4><p>Tiger prawns in coconut-based curry</p></div><span>₹ 1,100</span></div>
+            <div class="dining-item"><div><h4>Vegetarian Thali</h4><p>12-course royal vegetarian platter</p></div><span>₹ 650</span></div>
+            <div class="dining-item"><div><h4>Mango Kulfi Brûlée</h4><p>Signature dessert with rabri</p></div><span>₹ 280</span></div>
+          </div>
+          <div style="margin-top:1.5rem;display:flex;gap:.8rem;align-items:center">
+            <button class="btn-gold" style="font-size:.8rem;padding:.6rem 1.4rem" onclick="showHotelPage('booking')">Reserve Table</button>
+            <span style="font-size:.78rem;color:var(--muted)">Open: 7:30 AM – 11 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- GALLERY -->
+<div class="page" id="hpage-gallery">
+  <section class="gallery-section" style="padding-top:5rem">
+    <div class="container">
+      <div class="sec-label">Photo Gallery</div>
+      <h2 class="sec-title">Discover <span>Royal Palms</span></h2>
+      <div class="gallery-masonry">
+        <div class="gimg"><img src="https://picsum.photos/seed/hgal1/500/600" loading="lazy"/></div>
+        <div class="gimg"><img src="https://picsum.photos/seed/hgal2/500/350" loading="lazy"/></div>
+        <div class="gimg"><img src="https://picsum.photos/seed/hgal3/500/400" loading="lazy"/></div>
+        <div class="gimg"><img src="https://picsum.photos/seed/hgal4/500/700" loading="lazy"/></div>
+        <div class="gimg"><img src="https://picsum.photos/seed/hgal5/500/350" loading="lazy"/></div>
+        <div class="gimg"><img src="https://picsum.photos/seed/hgal6/500/450" loading="lazy"/></div>
+        <div class="gimg"><img src="https://picsum.photos/seed/hgal7/500/500" loading="lazy"/></div>
+        <div class="gimg"><img src="https://picsum.photos/seed/hgal8/500/300" loading="lazy"/></div>
+        <div class="gimg"><img src="https://picsum.photos/seed/hgal9/500/550" loading="lazy"/></div>
+      </div>
+    </div>
+  </section>
+  <section class="analytics-section" style="padding-top:3rem">
+    <div class="container">
+      <div class="sec-label">Analytics Dashboard Preview</div>
+      <h2 class="sec-title" style="font-size:1.5rem">Admin <span>Analytics</span> — Live Data</h2>
+      <div class="analytics-grid">
+        <div class="analytics-card"><div class="a-label">Total Visitors (This Month)</div><div class="a-num">24,831</div><div class="a-change">↑ 18.4% vs last month</div><div class="a-bar"><div class="a-fill" style="width:74%"></div></div></div>
+        <div class="analytics-card"><div class="a-label">Bookings This Month</div><div class="a-num">342</div><div class="a-change">↑ 12.1% vs last month</div><div class="a-bar"><div class="a-fill" style="width:62%"></div></div></div>
+        <div class="analytics-card"><div class="a-label">Revenue (₹)</div><div class="a-num">28.4L</div><div class="a-change">↑ 22.5% vs last month</div><div class="a-bar"><div class="a-fill" style="width:85%"></div></div></div>
+        <div class="analytics-card"><div class="a-label">Avg. Occupancy Rate</div><div class="a-num">87%</div><div class="a-change">↑ 5.2% vs last month</div><div class="a-bar"><div class="a-fill" style="width:87%"></div></div></div>
+        <div class="analytics-card"><div class="a-label">Guest Satisfaction</div><div class="a-num">4.9★</div><div class="a-change">↑ 0.2 vs last month</div><div class="a-bar"><div class="a-fill" style="width:98%"></div></div></div>
+        <div class="analytics-card"><div class="a-label">Repeat Guests</div><div class="a-num">61%</div><div class="a-change">↑ 8.3% vs last month</div><div class="a-bar"><div class="a-fill" style="width:61%"></div></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- BOOKING -->
+<div class="page" id="hpage-booking">
+  <section class="booking-page">
+    <div class="container" style="max-width:1000px">
+      <div class="sec-label" style="text-align:center">Reservations</div>
+      <h2 class="sec-title" style="text-align:center;font-size:2.2rem">Book Your <span>Stay</span></h2>
+      <div class="booking-form-grid">
+        <div class="booking-card">
+          <h3>Reservation Details</h3>
+          <div class="b-row">
+            <div class="b-group"><label>First Name</label><input placeholder="Rajesh"/></div>
+            <div class="b-group"><label>Last Name</label><input placeholder="Kumar"/></div>
+          </div>
+          <div class="b-row">
+            <div class="b-group"><label>Phone</label><input placeholder="+91 98765 43210"/></div>
+            <div class="b-group"><label>Email</label><input placeholder="rajesh@email.com"/></div>
+          </div>
+          <div class="b-row">
+            <div class="b-group"><label>Check-In Date</label><input type="date"/></div>
+            <div class="b-group"><label>Check-Out Date</label><input type="date"/></div>
+          </div>
+          <div class="b-row">
+            <div class="b-group"><label>Room Type</label><select><option>Deluxe Garden View – ₹8,500/night</option><option>Ocean View Suite – ₹18,000/night</option><option>Royal Presidential Suite – ₹45,000/night</option></select></div>
+            <div class="b-group"><label>Guests</label><select><option>1 Adult</option><option>2 Adults</option><option>2 Adults + 1 Child</option><option>2 Adults + 2 Children</option></select></div>
+          </div>
+          <div class="b-group"><label>Special Requests</label><textarea placeholder="Dietary requirements, anniversary setup, airport transfer, etc."></textarea></div>
+          <button class="b-submit" onclick="confirmBooking()">Confirm Reservation</button>
+        </div>
+        <div class="room-summary">
+          <h3>Booking Summary</h3>
+          <div class="summary-row"><span class="label">Room</span><span>Deluxe Garden View</span></div>
+          <div class="summary-row"><span class="label">Check-In</span><span>Select Date</span></div>
+          <div class="summary-row"><span class="label">Check-Out</span><span>Select Date</span></div>
+          <div class="summary-row"><span class="label">Duration</span><span>— nights</span></div>
+          <div class="summary-row"><span class="label">Rate</span><span>₹8,500 / night</span></div>
+          <div class="summary-row"><span class="label">GST (12%)</span><span>Included</span></div>
+          <div class="summary-total"><span>Estimated Total</span><span>₹8,500+</span></div>
+          <p class="payment-note">🔒 Secure payment via Razorpay, UPI or Card<br/>Free cancellation up to 48 hrs before check-in</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="hpage-contact">
+  <section class="contact-section" style="padding-top:5rem">
+    <div class="container">
+      <div class="sec-label">Get in Touch</div>
+      <h2 class="sec-title">Contact <span>Us</span></h2>
+      <div class="sec-divider"></div>
+      <br/>
+      <div class="contact-grid">
+        <div>
+          <div class="cinfo-block"><h4>Address</h4><p>Royal Palms Resort & Spa<br/>ECR Highway, Thiruvanmiyur,<br/>Chennai – 600 041, Tamil Nadu, India</p></div>
+          <div class="cinfo-block"><h4>Reservations</h4><p><a href="tel:+914423456789">+91 44 2345 6789</a><br/><a href="tel:+917869729829">+91 7869 729 829 (WhatsApp)</a></p></div>
+          <div class="cinfo-block"><h4>Email</h4><p><a href="mailto:reservations@royalpalms.in">reservations@royalpalms.in</a><br/><a href="mailto:info@royalpalms.in">info@royalpalms.in</a><br/><a href="mailto:events@royalpalms.in">events@royalpalms.in</a></p></div>
+          <div class="cinfo-block"><h4>Hours</h4><p>Front Desk: 24 × 7<br/>Restaurant: 7:30 AM – 11:00 PM<br/>Spa: 8:00 AM – 9:00 PM</p></div>
+          <div class="map-box">🗺️ Google Maps Embedded Here</div>
+        </div>
+        <div class="booking-card" style="padding:2rem">
+          <h3 style="font-size:1.2rem">Send a Message</h3>
+          <div style="margin-top:1.2rem">
+            <div class="b-group"><label>Name</label><input placeholder="Your Full Name"/></div>
+            <div class="b-group"><label>Email</label><input placeholder="your@email.com"/></div>
+            <div class="b-group"><label>Subject</label><select><option>Room Reservation</option><option>Event Enquiry</option><option>Spa Booking</option><option>General Enquiry</option></select></div>
+            <div class="b-group"><label>Message</label><textarea placeholder="Tell us how we can help you..." style="height:130px"></textarea></div>
+            <button class="b-submit">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ADMIN PAGE (Premium Feature Preview) -->
+<div class="page" id="hpage-admin">
+  <section style="padding:4rem 2rem;background:#0d0d0d">
+    <div class="container" style="max-width:900px">
+      <div style="background:#111;border:1px solid var(--border);border-radius:2px;padding:2.5rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">
+          <div>
+            <div class="sec-label">Premium Feature</div>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--gold)">Admin Dashboard & CMS</h2>
+          </div>
+          <button onclick="showHotelPage('home')" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:.4rem .8rem;cursor:pointer;font-family:'Inter',sans-serif;font-size:.8rem">← Back to Site</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem">
+          <div style="background:#1a1a1a;border:1px solid var(--border);padding:1.2rem;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--gold)">342</div><div style="font-size:.75rem;color:var(--muted)">Total Bookings</div></div>
+          <div style="background:#1a1a1a;border:1px solid var(--border);padding:1.2rem;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#28c76f">₹28.4L</div><div style="font-size:.75rem;color:var(--muted)">Monthly Revenue</div></div>
+          <div style="background:#1a1a1a;border:1px solid var(--border);padding:1.2rem;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--gold)">87%</div><div style="font-size:.75rem;color:var(--muted)">Occupancy Rate</div></div>
+          <div style="background:#1a1a1a;border:1px solid var(--border);padding:1.2rem;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#4a90d9">4.9★</div><div style="font-size:.75rem;color:var(--muted)">Guest Rating</div></div>
+        </div>
+        <div style="font-size:.88rem;color:var(--muted);background:#1a1a1a;border:1px solid var(--border);padding:1.5rem;line-height:1.8;margin-bottom:1rem">
+          <strong style="color:var(--gold)">Admin Dashboard includes:</strong><br/>
+          ✓ Content Management System (add/edit pages, images, pricing)<br/>
+          ✓ Booking Management (view, confirm, cancel reservations)<br/>
+          ✓ Analytics Dashboard with Google Analytics integration<br/>
+          ✓ Staff Access Control (multiple admin accounts with roles)<br/>
+          ✓ Email Automation (booking confirmations, reminders)<br/>
+          ✓ SEO Settings Panel (meta tags, keywords per page)<br/>
+          ✓ Performance Monitoring & Security Audit Reports
+        </div>
+        <p style="font-size:.8rem;color:var(--muted)">This feature is included in the <strong style="color:var(--gold)">Premium Custom Package (₹34,999)</strong>. Contact <a href="https://wa.me/917869729829" style="color:var(--gold)">Cherubim AI Infosoft</a> to get started.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Royal Palms Resort</div>
+      <p>A sanctuary of luxury on the shores of the Coromandel Coast. Where every moment becomes a cherished memory.</p>
+      <div style="margin-top:.8rem;font-size:.8rem;color:#3a3028">reservations@royalpalms.in</div>
+    </div>
+    <div class="footer-col"><h4>Hotel</h4><a onclick="showHotelPage('rooms')">Rooms & Suites</a><a onclick="showHotelPage('dining')">Dining</a><a>Spa & Wellness</a><a>Events & Banquets</a></div>
+    <div class="footer-col"><h4>Information</h4><a onclick="showHotelPage('gallery')">Gallery</a><a onclick="showHotelPage('contact')">Contact</a><a>Careers</a><a>Press & Media</a></div>
+    <div class="footer-col"><h4>Policies</h4><a>Cancellation</a><a>Privacy Policy</a><a>Terms of Service</a><a>Accessibility</a></div>
+  </div>
+  <div class="footer-bottom">© 2025 Royal Palms Resort & Spa. Website by <a href="https://www.cherubim.in">Cherubim AI Infosoft Pvt Ltd</a> | <a href="tel:+917869729829">+91 7869729829</a></div>
+</footer>
+
+<a href="https://wa.me/917869729829" class="float-wa" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+function showHotelPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('hpage-'+name).classList.add('active');
+  const nav=document.getElementById('hnav-'+name);
+  if(nav)nav.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setLang(lang,btn){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[data-'+lang+']').forEach(el=>{
+    el.textContent=el.getAttribute('data-'+lang);
+  });
+}
+
+function confirmBooking(){
+  alert('🏨 Reservation Request Submitted!\n\nOur team will contact you within 30 minutes to confirm your booking.\n\nThank you for choosing Royal Palms Resort!');
+}
+</script>
+</body>
+</html>
