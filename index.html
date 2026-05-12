@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cherubim AI Infosoft – Website Packages</title>
+  <style>
+    :root {
+      --dark: #0d1b2a;
+      --dark2: #152338;
+      --cyan: #00d4d8;
+      --orange: #ff6b35;
+      --green: #28c76f;
+      --blue: #4a90d9;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: rgba(13,27,42,0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0,212,216,0.2);
+    }
+    .logo { font-size: 1.1rem; font-weight: 700; }
+    .logo span { color: var(--cyan); }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-left: 1.5rem;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--cyan); }
+    .nav-cta {
+      background: var(--cyan);
+      color: var(--dark) !important;
+      padding: .4rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 20% 50%, rgba(0,212,216,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(74,144,217,0.08) 0%, transparent 60%),
+                  var(--dark);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,212,216,0.15);
+      border: 1px solid rgba(0,212,216,0.4);
+      color: var(--cyan);
+      padding: .3rem 1rem;
+      border-radius: 20px;
+      font-size: .85rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: .05em;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 span { color: var(--cyan); }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--cyan);
+      color: var(--dark);
+      padding: .85rem 2rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,216,0.4); }
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid rgba(0,212,216,0.5);
+      color: var(--cyan);
+      padding: .85rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-secondary:hover { background: rgba(0,212,216,0.1); }
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2.2rem; font-weight: 800; color: var(--cyan); }
+    .stat-label { font-size: .85rem; color: var(--muted); }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 5rem 2rem; }
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: .5rem;
+    }
+    .section-title h2 span { color: var(--cyan); }
+    .section-title p { color: var(--muted); font-size: 1.05rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* ── WHY SECTION ── */
+    .why-section { background: var(--dark2); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .why-card {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 1.8rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .why-card:hover { border-color: rgba(0,212,216,0.4); transform: translateY(-4px); }
+    .why-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .why-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
+    .why-card p { color: var(--muted); font-size: .9rem; }
+
+    /* ── PACKAGES ── */
+    .packages-section { background: var(--dark); }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .package-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: border-color .2s, transform .2s;
+    }
+    .package-card:hover { transform: translateY(-6px); }
+    .package-card.popular {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 1px var(--orange), 0 20px 40px rgba(255,107,53,0.15);
+    }
+    .package-card.best {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 1px var(--cyan), 0 20px 40px rgba(0,212,216,0.15);
+    }
+    .package-card.sell { border-color: var(--green); }
+    .package-card.full { border-color: var(--blue); }
+
+    .pkg-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: .3rem .9rem;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      white-space: nowrap;
+    }
+    .badge-orange { background: var(--orange); color: #fff; }
+    .badge-cyan { background: var(--cyan); color: var(--dark); }
+    .badge-green { background: var(--green); color: #fff; }
+    .badge-blue { background: var(--blue); color: #fff; }
+
+    .pkg-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: .5rem 0 .25rem;
+      letter-spacing: .02em;
+    }
+    .pkg-tagline { color: var(--muted); font-size: .85rem; margin-bottom: 1.2rem; }
+    .pkg-price {
+      margin-bottom: 1.2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .pkg-original {
+      font-size: .9rem;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+    .pkg-amount {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .pkg-amount small { font-size: .9rem; font-weight: 400; color: var(--muted); }
+    .pkg-subtitle {
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      margin-bottom: .75rem;
+    }
+    .pkg-features { list-style: none; margin-bottom: 1.5rem; }
+    .pkg-features li {
+      font-size: .88rem;
+      color: var(--muted);
+      padding: .3rem 0;
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+    }
+    .pkg-features li::before { content: "✓"; flex-shrink: 0; font-weight: 700; }
+    .popular .pkg-features li::before { color: var(--orange); }
+    .best .pkg-features li::before { color: var(--cyan); }
+    .sell .pkg-features li::before { color: var(--green); }
+    .full .pkg-features li::before { color: var(--blue); }
+
+    .pkg-best-for {
+      font-size: .8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .pkg-best-for strong { color: var(--text); }
+    .pkg-btn {
+      display: block;
+      text-align: center;
+      padding: .75rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity .2s, transform .2s;
+    }
+    .pkg-btn:hover { opacity: .85; transform: translateY(-1px); }
+    .btn-orange { background: var(--orange); color: #fff; }
+    .btn-cyan { background: var(--cyan); color: var(--dark); }
+    .btn-green { background: var(--green); color: #fff; }
+    .btn-blue { background: var(--blue); color: #fff; }
+
+    /* ── WHY CHOOSE US ── */
+    .choose-section { background: var(--dark2); }
+    .choose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .choose-card {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: border-color .2s;
+    }
+    .choose-card:hover { border-color: rgba(0,212,216,0.3); }
+    .choose-icon {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin: 0 auto 1rem;
+    }
+    .choose-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .choose-card p { color: var(--muted); font-size: .88rem; }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { background: var(--dark); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      position: relative;
+    }
+    .step {
+      text-align: center;
+      position: relative;
+    }
+    .step-num {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin: 0 auto 1.2rem;
+      color: var(--dark);
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+    .step p { color: var(--muted); font-size: .88rem; }
+
+    /* ── COMPARISON TABLE ── */
+    .compare-section { background: var(--dark2); }
+    .compare-table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
+    thead th {
+      padding: 1rem .75rem;
+      font-size: .85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      background: var(--dark);
+    }
+    thead th:first-child { text-align: left; }
+    thead th:not(:first-child) { text-align: center; width: 14%; }
+    .th-starter { color: var(--orange); }
+    .th-biz { color: var(--cyan); }
+    .th-ecom { color: var(--green); }
+    .th-prem { color: var(--blue); }
+
+    tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+    tbody td { padding: .8rem .75rem; font-size: .88rem; }
+    tbody td:first-child { color: var(--muted); }
+    tbody td:not(:first-child) { text-align: center; }
+    .check-yes { color: var(--green); font-weight: 700; font-size: 1rem; }
+    .check-no { color: rgba(255,255,255,0.15); font-size: 1rem; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: radial-gradient(ellipse at 50% 50%, rgba(0,212,216,0.12) 0%, transparent 70%), var(--dark);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .cta-section h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; }
+    .cta-section p { color: var(--muted); font-size: 1.1rem; margin-bottom: 2rem; }
+    .cta-note { font-size: .8rem; color: var(--muted); margin-top: 1rem; }
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: #25D366;
+      color: #fff;
+      padding: 1rem 2.2rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .whatsapp-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(0,0,0,0.4);
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    footer p { color: var(--muted); font-size: .85rem; }
+    footer a { color: var(--cyan); text-decoration: none; }
+    .footer-note { font-size: .78rem; margin-top: .5rem; color: rgba(148,163,184,0.6); }
+
+    /* ── FLOATING WA ── */
+    .float-wa {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px; height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.5);
+      text-decoration: none;
+      z-index: 999;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ box-shadow: 0 4px 16px rgba(37,211,102,0.5); }
+      50%{ box-shadow: 0 4px 32px rgba(37,211,102,0.8); }
+    }
+
+    /* ── DEMO BANNER ── */
+    .demo-banner {
+      background: linear-gradient(90deg, var(--orange), #ff9500);
+      text-align: center;
+      padding: .6rem 1rem;
+      font-size: .85rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    @media(max-width: 768px) {
+      nav .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Demo Banner -->
+<div class="demo-banner">
+  ⚡ DEMO PREVIEW — Cherubim AI Infosoft Pvt Ltd | This is a sample website for client presentation
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">CHERUBIM <span>AI</span> INFOSOFT</div>
+  <div class="nav-links">
+    <a href="#why">Why Website?</a>
+    <a href="#packages">Packages</a>
+    <a href="#choose">Why Us?</a>
+    <a href="#how">How It Works</a>
+    <a href="#contact" class="nav-cta">Get Free Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">🚀 AI-Powered Digital Solutions</div>
+    <h1>Your Business Deserves<br>a <span>Website.</span></h1>
+    <p>95% of customers search online before visiting. Are they finding <strong>YOU</strong> or your competitor?</p>
+    <div class="hero-btns">
+      <a href="#packages" class="btn-primary">See Our Packages</a>
+      <a href="#contact" class="btn-secondary">Get Free Consultation</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">95%</div>
+        <div class="stat-label">Customers Search Online</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3-5</div>
+        <div class="stat-label">Days to Launch</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2x</div>
+        <div class="stat-label">More Revenue</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">₹4,999</div>
+        <div class="stat-label">Starting Price</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WEBSITE -->
+<section class="why-section" id="why">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why Your Business <span>Needs a Website</span></h2>
+      <p>88% of consumers research online before buying. No website = no trust.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(0,212,216,0.15);">🕐</div>
+        <h3>Be Found 24/7</h3>
+        <p>Your shop closes, but your website never sleeps. Customers find you anytime, anywhere.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(40,199,111,0.15);">🤝</div>
+        <h3>Build Trust Instantly</h3>
+        <p>88% of consumers research online before buying. No website = no trust.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(255,107,53,0.15);">🏆</div>
+        <h3>Beat Your Competition</h3>
+        <p>Your competitors already have websites. Every day without one, you lose customers to them.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(255,193,7,0.15);">💰</div>
+        <h3>Grow Your Revenue</h3>
+        <p>Businesses with websites earn 2x more. Showcase products, collect leads, get orders online.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(74,144,217,0.15);">💼</div>
+        <h3>Look Professional</h3>
+        <p>A website is your digital visiting card. It makes your business look established and reliable.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:rgba(156,39,176,0.15);">🌍</div>
+        <h3>Reach More Customers</h3>
+        <p>Go beyond your local area. A website helps customers from other cities find and contact you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages-section" id="packages">
+  <div class="container">
+    <div class="section-title">
+      <h2>Website <span>Packages & Pricing</span></h2>
+      <p>Professional websites built with AI precision. Launch in just 3-5 days!</p>
+    </div>
+
+    <div class="packages-grid">
+
+      <!-- STARTER -->
+      <div class="package-card popular">
+        <span class="pkg-badge badge-orange">MOST POPULAR</span>
+        <div class="pkg-name">STARTER</div>
+        <div class="pkg-tagline">Perfect for Local Businesses</div>
+        <div class="pkg-price">
+          <div class="pkg-original">Rs. 7,999</div>
+          <div class="pkg-amount" style="color:var(--orange);">Rs. 4,999 <small>/ one-time</small></div>
+        </div>
+        <div class="pkg-subtitle" style="color:var(--orange);">Single Page | Up to 5 Sections</div>
+        <ul class="pkg-features">
+          <li>Hero, About, Services, Gallery, Contact</li>
+          <li>Smooth Scroll Navigation</li>
+          <li>Mobile-Responsive Design</li>
+          <li>WhatsApp Chat Button</li>
+          <li>Google Maps Integration</li>
+          <li>Basic SEO Setup</li>
+          <li>Contact Form with Email Alerts</li>
+          <li>Social Media Links</li>
+          <li>1 Year Free Hosting</li>
+          <li>Free .com / .in Domain (1 Year)</li>
+          <li>SSL Security Certificate</li>
+        </ul>
+        <div class="pkg-best-for"><strong>Best For:</strong> Shops, Restaurants, Clinics, Freelancers</div>
+        <a href="#contact" class="pkg-btn btn-orange">Get Started →</a>
+      </div>
+
+      <!-- BUSINESS PRO -->
+      <div class="package-card best">
+        <span class="pkg-badge badge-cyan">BEST VALUE</span>
+        <div class="pkg-name">BUSINESS PRO</div>
+        <div class="pkg-tagline">For Growing Businesses</div>
+        <div class="pkg-price">
+          <div class="pkg-original">Rs. 14,999</div>
+          <div class="pkg-amount" style="color:var(--cyan);">Rs. 9,999 <small>/ one-time</small></div>
+        </div>
+        <div class="pkg-subtitle" style="color:var(--cyan);">Multi-Page | Up to 10 Pages</div>
+        <ul class="pkg-features">
+          <li>Everything in Starter +</li>
+          <li>Separate Pages (not just sections)</li>
+          <li>Product/Service Catalog Pages</li>
+          <li>Testimonials & Reviews Section</li>
+          <li>Blog / News Section</li>
+          <li>Advanced SEO & Google Analytics</li>
+          <li>WhatsApp & Call-to-Action Buttons</li>
+          <li>Photo Gallery with Lightbox</li>
+          <li>Email Setup (2 Business Emails)</li>
+          <li>Speed Optimized (Fast Loading)</li>
+          <li>1 Year Free Hosting + Domain</li>
+          <li>3 Months Free Maintenance</li>
+        </ul>
+        <div class="pkg-best-for"><strong>Best For:</strong> Retailers, Agencies, Coaching Centers</div>
+        <a href="#contact" class="pkg-btn btn-cyan">Get Started →</a>
+      </div>
+
+      <!-- E-COMMERCE -->
+      <div class="package-card sell">
+        <span class="pkg-badge badge-green">SELL ONLINE</span>
+        <div class="pkg-name">E-COMMERCE</div>
+        <div class="pkg-tagline">Start Selling Online Today</div>
+        <div class="pkg-price">
+          <div class="pkg-original">Rs. 24,999</div>
+          <div class="pkg-amount" style="color:var(--green);">Rs. 17,999 <small>/ one-time</small></div>
+        </div>
+        <div class="pkg-subtitle" style="color:var(--green);">Up to 20 Pages + Product Listings</div>
+        <ul class="pkg-features">
+          <li>Everything in Business Pro +</li>
+          <li>Online Product Catalog (up to 50)</li>
+          <li>Shopping Cart & Checkout</li>
+          <li>Payment Gateway (Razorpay/UPI)</li>
+          <li>Order Management Dashboard</li>
+          <li>Customer Account & Login</li>
+          <li>Inventory Management</li>
+          <li>Invoice & Receipt Generation</li>
+          <li>Shipping Integration</li>
+          <li>1 Year Free Hosting + Domain</li>
+          <li>6 Months Free Maintenance</li>
+        </ul>
+        <div class="pkg-best-for"><strong>Best For:</strong> Retail Shops, Boutiques, D2C Brands</div>
+        <a href="#contact" class="pkg-btn btn-green">Get Started →</a>
+      </div>
+
+      <!-- PREMIUM CUSTOM -->
+      <div class="package-card full">
+        <span class="pkg-badge badge-blue">FULL POWER</span>
+        <div class="pkg-name">PREMIUM CUSTOM</div>
+        <div class="pkg-tagline">Enterprise-Grade Solutions</div>
+        <div class="pkg-price">
+          <div class="pkg-original">Rs. 49,999</div>
+          <div class="pkg-amount" style="color:var(--blue);">Rs. 34,999 <small>/ one-time</small></div>
+        </div>
+        <div class="pkg-subtitle" style="color:var(--blue);">Unlimited Pages</div>
+        <ul class="pkg-features">
+          <li>Everything in E-Commerce +</li>
+          <li>Custom UI/UX Design</li>
+          <li>Admin Dashboard & CMS</li>
+          <li>Multi-language Support</li>
+          <li>Booking/Appointment System</li>
+          <li>Advanced Analytics Dashboard</li>
+          <li>API Integrations</li>
+          <li>Priority Support (12 Months)</li>
+          <li>Performance & Security Audit</li>
+          <li>1 Year Free Hosting + Domain</li>
+          <li>12 Months Free Maintenance</li>
+        </ul>
+        <div class="pkg-best-for"><strong>Best For:</strong> Hotels, Hospitals, Institutes, Enterprises</div>
+        <a href="#contact" class="pkg-btn btn-blue">Get Started →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Package <span>Comparison</span></h2>
+      <p>See exactly what's included in each plan</p>
+    </div>
+    <div class="compare-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:left;color:var(--muted);">Feature</th>
+            <th class="th-starter">Starter<br><small>₹4,999</small></th>
+            <th class="th-biz">Business Pro<br><small>₹9,999</small></th>
+            <th class="th-ecom">E-Commerce<br><small>₹17,999</small></th>
+            <th class="th-prem">Premium<br><small>₹34,999</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mobile-Responsive Design</td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>WhatsApp Chat Button</td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Google Maps Integration</td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>SSL Security Certificate</td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Free Domain + Hosting (1yr)</td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>SEO Setup</td>
+            <td>Basic</td>
+            <td>Advanced</td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Multiple Pages</td>
+            <td><span class="check-no">—</span></td>
+            <td>Up to 10</td>
+            <td>Up to 20</td>
+            <td>Unlimited</td>
+          </tr>
+          <tr>
+            <td>Blog / News Section</td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Business Email Setup</td>
+            <td><span class="check-no">—</span></td>
+            <td>2 Emails</td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Online Store / Products</td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+            <td>Up to 50</td>
+            <td>Unlimited</td>
+          </tr>
+          <tr>
+            <td>Payment Gateway (UPI/Razorpay)</td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-yes">✓</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Admin Dashboard & CMS</td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Booking/Appointment System</td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Multi-language Support</td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-no">—</span></td>
+            <td><span class="check-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Free Maintenance</td>
+            <td><span class="check-no">—</span></td>
+            <td>3 Months</td>
+            <td>6 Months</td>
+            <td>12 Months</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="choose-section" id="choose">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why <span>Choose Us?</span></h2>
+      <p>We don't just build websites. We build your digital success story.</p>
+    </div>
+    <div class="choose-grid">
+      <div class="choose-card">
+        <div class="choose-icon" style="background:rgba(0,212,216,0.15);">🤖</div>
+        <h3>AI-Powered Development</h3>
+        <p>We use cutting-edge AI tools to build faster, smarter, and more affordable websites without compromising quality.</p>
+      </div>
+      <div class="choose-card">
+        <div class="choose-icon" style="background:rgba(74,144,217,0.15);">⚡</div>
+        <h3>Ready in 3-5 Days</h3>
+        <p>While others take weeks, our AI-powered workflow delivers your complete website in just 3-5 business days.</p>
+      </div>
+      <div class="choose-card">
+        <div class="choose-icon" style="background:rgba(255,193,7,0.15);">💰</div>
+        <h3>Unbeatable Pricing</h3>
+        <p>Professional websites starting at just Rs. 4,999. No hidden charges, no monthly fees for the first year.</p>
+      </div>
+      <div class="choose-card">
+        <div class="choose-icon" style="background:rgba(40,199,111,0.15);">💬</div>
+        <h3>Ongoing Support</h3>
+        <p>Free maintenance included with every package. We're just a WhatsApp message away for any help you need.</p>
+      </div>
+      <div class="choose-card">
+        <div class="choose-icon" style="background:rgba(255,107,53,0.15);">🔍</div>
+        <h3>Google-Ready SEO</h3>
+        <p>Every website comes optimized for Google search, helping your customers find you when they search online.</p>
+      </div>
+      <div class="choose-card">
+        <div class="choose-icon" style="background:rgba(156,39,176,0.15);">📱</div>
+        <h3>100% Mobile Friendly</h3>
+        <p>Your website will look stunning on phones, tablets, and desktops. 70% of web traffic is mobile!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="section-title">
+      <h2>How It <span>Works</span></h2>
+      <p>Simple 4-step process to get your business online</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>We Contact You</h3>
+        <p>We find your business and reach out with a free website consultation.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We Design</h3>
+        <p>Our AI builds a custom website tailored to your business in 3-5 days.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>You Review</h3>
+        <p>You review the website and suggest any changes you'd like.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>We Launch!</h3>
+        <p>We deploy your website live and hand over everything to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <h2>Ready to Take Your<br><span style="color:var(--cyan)">Business Online?</span></h2>
+    <p>Get a FREE consultation today. No obligation, no pressure.</p>
+    <a href="https://wa.me/917869729829?text=Hi%2C%20I%20am%20interested%20in%20a%20website%20from%20Cherubim%20AI%20Infosoft." class="whatsapp-btn" target="_blank">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp / Call: +91 7869729829
+    </a>
+    <p class="cta-note">Email: support@cherubim.in &nbsp;|&nbsp; Web: www.cherubim.in</p>
+    <p class="cta-note" style="margin-top:.5rem;">*All prices are exclusive of GST (18%). Domain &amp; hosting renewal charges apply after the first year.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Cherubim AI Infosoft Pvt Ltd</strong> — AI-Powered Website Solutions</p>
+  <p><a href="mailto:support@cherubim.in">support@cherubim.in</a> &nbsp;|&nbsp; <a href="https://www.cherubim.in" target="_blank">www.cherubim.in</a> &nbsp;|&nbsp; <a href="tel:+917869729829">+91 7869729829</a></p>
+  <p class="footer-note">All prices exclusive of GST (18%). Domain &amp; hosting renewal charges apply after first year.</p>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/917869729829" class="float-wa" target="_blank" title="Chat on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+</body>
+</html>
